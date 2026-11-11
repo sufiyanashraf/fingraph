@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #3b82f6;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --font-girard: 'Girard', 'Playfair Display', Didot, 'Bodoni MT', Georgia, serif;
+}
+
+.font-girard {
+  font-family: 'Girard', 'Playfair Display', Didot, 'Bodoni MT', Georgia, serif;
+}
+
+/* ── Base body styling ── */
+body {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #060c1d;
+  color: #f1f5f9;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* ── Dark mode body ── */
+.dark body,
+html.dark body {
+  background-color: #060c1d;
+  color: #f1f5f9;
+}
+
+.font-serif {
+  font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+}
+
+/* ── Global: Remove native number-input spinners everywhere ── */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* ── Scrollbar hiding utility ── */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Header slide-down animation ── */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-down {
+  animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── Keyboard slide-up animation ── */
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.animate-slide-up {
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── 3D Logo Rotation: 2 Full Continuous Rounds (720deg total) in One Direction Without Stopping ── */
+@keyframes spin3dTwoRounds {
+  0% {
+    transform: perspective(1200px) rotateX(12deg) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(1200px) rotateX(12deg) rotateY(720deg);
+  }
+}
+
+.animate-spin-3d-two-rounds {
+  animation: spin3dTwoRounds 2.0s cubic-bezier(0.35, 0.0, 0.25, 1) forwards;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ── Ground shadow breathing in sync with 3D logo ── */
+@keyframes shadowPulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.65;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+}
+
+.animate-shadow-pulse {
+  animation: shadowPulse 2.0s ease-in-out forwards;
+}
+
+/* ── Splash fade out ── */
+@keyframes fadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(1.05); visibility: hidden; }
+}
+.animate-fade-out {
+  animation: fadeOut 0.5s ease-out forwards;
+}
+
+/* ── Splash: outer glow ring that pulses around the logo ── */
+@keyframes glowRingPulse {
+  0%   { transform: scale(0.85); opacity: 0; }
+  30%  { opacity: 0.55; }
+  70%  { opacity: 0.35; }
+  100% { transform: scale(1.18); opacity: 0; }
+}
+.animate-glow-ring {
+  animation: glowRingPulse 2.0s ease-in-out forwards;
+}
+
+/* ── Splash: brand text fade+slide up ── */
+@keyframes brandReveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-brand-reveal {
+  animation: brandReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── Landing: main container smooth fade-in after splash ── */
+@keyframes landingFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-landing-in {
+  animation: landingFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── Landing hero: title scale+fade in ── */
+@keyframes heroTitle {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-hero-title {
+  animation: heroTitle 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  opacity: 0;
+}
+
+/* ── Landing: staggered category card reveal ── */
+@keyframes cardReveal {
+  from { opacity: 0; transform: translateX(-18px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.animate-card-1 { animation: cardReveal 0.55s cubic-bezier(0.16,1,0.3,1) 0.15s forwards; opacity: 0; }
+.animate-card-2 { animation: cardReveal 0.55s cubic-bezier(0.16,1,0.3,1) 0.28s forwards; opacity: 0; }
+.animate-card-3 { animation: cardReveal 0.55s cubic-bezier(0.16,1,0.3,1) 0.41s forwards; opacity: 0; }
+.animate-card-4 { animation: cardReveal 0.55s cubic-bezier(0.16,1,0.3,1) 0.54s forwards; opacity: 0; }
+
+/* ── Subtle floating dot decoration ── */
+@keyframes floatDot {
+  0%, 100% { transform: translateY(0px);   opacity: 0.4; }
+  50%       { transform: translateY(-8px);  opacity: 0.7; }
+}
+.animate-float-dot {
+  animation: floatDot 3.5s ease-in-out infinite;
+}
+

@@ -1,0 +1,7 @@
+{
+  "framework": "React",
+  "language": "TypeScript",
+  "tooling": "Vite",
+  "styling": "Tailwind CSS",
+  "package_manager": "npm"
+}
